@@ -30,6 +30,8 @@ import { LiveTicker } from '@/components/marketing/live-ticker'
 import { StatsRow } from '@/components/marketing/stats-row'
 import { ModeShowcase } from '@/components/marketing/mode-showcase'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
+import { AnimatedPriceChart } from '@/components/marketing/animated-price-chart'
+import { AnimatedOrderFlow } from '@/components/marketing/animated-order-flow'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -150,35 +152,12 @@ const featureStrip = [
 ]
 
 /* ------------------------------------------------------------------ */
-/*  Mini Sparkline Chart (pure divs)                                   */
-/* ------------------------------------------------------------------ */
-
-function MiniSparkline() {
-  const bars = [35, 42, 38, 55, 48, 62, 58, 70, 65, 74, 68, 78, 72, 80, 76, 85, 82, 88]
-  return (
-    <div className="flex items-end gap-[2px] h-10">
-      {bars.map((h, i) => (
-        <div
-          key={i}
-          className="w-[3px] rounded-full bg-gradient-to-t from-teal/40 to-teal"
-          style={{
-            height: `${h}%`,
-            opacity: 0.4 + (i / bars.length) * 0.6,
-            animationDelay: `${i * 60}ms`,
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
 /*  Mock Dashboard Preview                                             */
 /* ------------------------------------------------------------------ */
 
 function MockDashboardPreview() {
   return (
-    <div className="relative max-w-lg mx-auto mt-12">
+    <div className="relative">
       {/* Ambient glow behind the card */}
       <div
         className="absolute -inset-8 rounded-3xl pointer-events-none"
@@ -230,9 +209,9 @@ function MockDashboardPreview() {
         </div>
         <p className="text-[11px] text-text-muted font-body mb-4">Today&apos;s P&amp;L: +$271.42</p>
 
-        {/* Mini sparkline chart */}
+        {/* Animated price chart */}
         <div className="mb-4 px-1">
-          <MiniSparkline />
+          <AnimatedPriceChart height={100} />
         </div>
 
         {/* Divider */}
@@ -469,12 +448,41 @@ export default function HomePage() {
               })}
             </div>
 
-            {/* Mock Dashboard Preview */}
+            {/* Mock Dashboard + Order Flow Preview */}
             <div
-              className="animate-slide-up"
+              className="animate-slide-up mt-12"
               style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}
             >
-              <MockDashboardPreview />
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 max-w-4xl mx-auto items-start">
+                {/* Left: Dashboard Preview */}
+                <MockDashboardPreview />
+
+                {/* Right: Order Flow */}
+                <div className="relative">
+                  {/* Ambient glow */}
+                  <div
+                    className="absolute -inset-8 rounded-3xl pointer-events-none"
+                    style={{
+                      background:
+                        'radial-gradient(ellipse at center, rgba(52,211,153,0.06) 0%, transparent 70%)',
+                      filter: 'blur(40px)',
+                    }}
+                  />
+                  <div className="relative bg-bg-panel border border-border rounded-2xl p-4 shadow-card-lg animate-float-slow">
+                    {/* Scan-line overlay */}
+                    <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none z-10">
+                      <div
+                        className="absolute inset-0 opacity-[0.02]"
+                        style={{
+                          backgroundImage:
+                            'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+                        }}
+                      />
+                    </div>
+                    <AnimatedOrderFlow />
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Powered-by strip */}
