@@ -387,37 +387,37 @@ export default function HomePage() {
             </div>
 
             {/* Hero Stats Row — animated numbers */}
-            <div className="animate-slide-up flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16 mb-10">
+            <div className="animate-slide-up flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-8">
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-text-primary">
+                <div className="text-2xl sm:text-3xl font-heading font-bold text-text-primary">
                   <AnimatedCounter value={12.4} prefix="$" suffix="M+" decimals={1} duration={2200} />
                 </div>
-                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                <p className="text-[10px] sm:text-xs text-text-muted font-body mt-1 uppercase tracking-wider">
                   Volume Processed
                 </p>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-border" />
+              <div className="hidden sm:block w-px h-8 bg-border" />
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-text-primary">
+                <div className="text-2xl sm:text-3xl font-heading font-bold text-text-primary">
                   <AnimatedCounter value={99.9} suffix="%" decimals={1} duration={2000} />
                 </div>
-                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                <p className="text-[10px] sm:text-xs text-text-muted font-body mt-1 uppercase tracking-wider">
                   Uptime
                 </p>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-border" />
+              <div className="hidden sm:block w-px h-8 bg-border" />
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-teal">
+                <div className="text-2xl sm:text-3xl font-heading font-bold text-teal">
                   <AnimatedCounter value={50} prefix="<" suffix="ms" duration={1800} />
                 </div>
-                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                <p className="text-[10px] sm:text-xs text-text-muted font-body mt-1 uppercase tracking-wider">
                   Execution
                 </p>
               </div>
             </div>
 
             {/* Headline — punchy 3-line treatment */}
-            <h1 className="animate-slide-up-delay-1 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold leading-[1.05] tracking-tight">
+            <h1 className="animate-slide-up-delay-1 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-[1.08] tracking-tight">
               <span className="text-text-primary">Execute Smarter.</span>
               <br />
               <span className="shimmer-text text-teal">Trade Harder.</span>
@@ -426,7 +426,7 @@ export default function HomePage() {
             </h1>
 
             {/* Subheadline */}
-            <p className="animate-slide-up-delay-2 mt-7 text-lg sm:text-xl lg:text-2xl text-text-secondary font-body max-w-2xl mx-auto leading-relaxed">
+            <p className="animate-slide-up-delay-2 mt-6 text-base sm:text-lg text-text-secondary font-body max-w-2xl mx-auto leading-relaxed">
               The premium trading OS that enforces your rules, executes your strategy,
               and never breaks your limits.
             </p>
