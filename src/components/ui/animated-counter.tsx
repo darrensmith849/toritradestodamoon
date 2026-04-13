@@ -25,13 +25,14 @@ export function AnimatedCounter({
   decimals = 0,
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const [displayValue, setDisplayValue] = useState(0)
-  const [hasStarted, setHasStarted] = useState(false)
+  const [displayValue, setDisplayValue] = useState(value)
+  const [hasAnimated, setHasAnimated] = useState(false)
   const animationRef = useRef<number | null>(null)
 
   const startAnimation = useCallback(() => {
-    if (hasStarted) return
-    setHasStarted(true)
+    if (hasAnimated) return
+    setHasAnimated(true)
+    setDisplayValue(0)
 
     const startTime = performance.now()
 
@@ -51,7 +52,7 @@ export function AnimatedCounter({
     }
 
     animationRef.current = requestAnimationFrame(animate)
-  }, [value, duration, hasStarted])
+  }, [value, duration, hasAnimated])
 
   useEffect(() => {
     const el = ref.current
