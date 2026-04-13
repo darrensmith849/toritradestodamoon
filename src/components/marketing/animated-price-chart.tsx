@@ -195,6 +195,95 @@ export function AnimatedPriceChart({
           />
         ))}
 
+        {/* --- Trend lines (hint at analysis, don't reveal strategy) --- */}
+        {(() => {
+          // Simple moving average (smoothed line)
+          const maWindow = 10
+          const maPoints = prices.map((_, i) => {
+            const start = Math.max(0, i - maWindow + 1)
+            const slice = prices.slice(start, i + 1)
+            return slice.reduce((a, b) => a + b, 0) / slice.length
+          })
+          const maLine = maPoints
+            .map((p, i) => {
+              const x = (i / (prices.length - 1)) * svgWidth
+              const y = priceToY(p, min, max, height, SVG_PADDING)
+              return `${x},${y}`
+            })
+            .join(' ')
+
+          // Support line — connects two recent lows
+          const recentPrices = prices.slice(-30)
+          const recentMin = Math.min(...recentPrices)
+          const supportY = priceToY(recentMin + 0.3, min, max, height, SVG_PADDING)
+
+          // Resistance line — connects two recent highs
+          const recentMax = Math.max(...recentPrices)
+          const resistY = priceToY(recentMax - 0.3, min, max, height, SVG_PADDING)
+
+          return (
+            <>
+              {/* Moving average line */}
+              <polyline
+                points={maLine}
+                fill="none"
+                stroke="rgba(245,185,60,0.25)"
+                strokeWidth={1}
+                strokeDasharray="4 3"
+                style={{ transition: 'all 0.8s ease-out' }}
+              />
+              {/* Support line */}
+              <line
+                x1={svgWidth * 0.3}
+                y1={supportY}
+                x2={svgWidth}
+                y2={supportY - 4}
+                stroke="rgba(52,211,153,0.18)"
+                strokeWidth={1}
+                strokeDasharray="6 4"
+              />
+              {/* Resistance line */}
+              <line
+                x1={svgWidth * 0.25}
+                y1={resistY}
+                x2={svgWidth}
+                y2={resistY + 3}
+                stroke="rgba(248,113,113,0.15)"
+                strokeWidth={1}
+                strokeDasharray="6 4"
+              />
+              {/* Tiny labels */}
+              <text
+                x={svgWidth * 0.31}
+                y={supportY + 10}
+                fill="rgba(52,211,153,0.3)"
+                fontSize="8"
+                fontFamily="monospace"
+              >
+                S
+              </text>
+              <text
+                x={svgWidth * 0.26}
+                y={resistY - 4}
+                fill="rgba(248,113,113,0.3)"
+                fontSize="8"
+                fontFamily="monospace"
+              >
+                R
+              </text>
+              <text
+                x={8}
+                y={priceToY(maPoints[maPoints.length - 1], min, max, height, SVG_PADDING) - 4}
+                fill="rgba(245,185,60,0.3)"
+                fontSize="8"
+                fontFamily="monospace"
+              >
+                MA
+              </text>
+            </>
+          )
+        })()}
+
         {/* Area fill */}
         <polygon points={areaPolygon} fill="url(#areaGrad)" />
 
