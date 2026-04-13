@@ -1,0 +1,27 @@
+import type { EquityPoint } from '@/lib/types'
+
+export const mockEquity: EquityPoint[] = [
+  { date: '2026-03-01', equity: 10000 },
+  { date: '2026-03-03', equity: 10120 },
+  { date: '2026-03-05', equity: 9980 },
+  { date: '2026-03-07', equity: 10240 },
+  { date: '2026-03-09', equity: 10310 },
+  { date: '2026-03-11', equity: 10180 },
+  { date: '2026-03-13', equity: 10450 },
+  { date: '2026-03-15', equity: 10620 },
+  { date: '2026-03-17', equity: 10510 },
+  { date: '2026-03-19', equity: 10780 },
+  { date: '2026-03-21', equity: 10920 },
+  { date: '2026-03-23', equity: 10860 },
+  { date: '2026-03-25', equity: 11050 },
+  { date: '2026-03-27', equity: 11180 },
+  { date: '2026-03-29', equity: 11040 },
+  { date: '2026-03-31', equity: 11260 },
+  { date: '2026-04-02', equity: 11390 },
+  { date: '2026-04-04', equity: 11280 },
+  { date: '2026-04-06', equity: 11520 },
+  { date: '2026-04-08', equity: 11610 },
+  { date: '2026-04-10', equity: 11480 },
+  { date: '2026-04-12', equity: 11720 },
+  { date: '2026-04-13', equity: 11847.32 },
+]

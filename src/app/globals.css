@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg-base text-text-secondary font-body antialiased;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-text-primary;
+  }
+  ::selection {
+    @apply bg-teal/20 text-text-primary;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-bg-panel border border-border backdrop-blur-xl;
+  }
+  .glass-surface {
+    @apply bg-bg-surface border border-border;
+  }
+}
