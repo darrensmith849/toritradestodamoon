@@ -36,7 +36,7 @@
   pointer-events: none;
 }
 .gradient-orb-teal {
-  background: radial-gradient(circle, rgba(89, 218, 221, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(45, 235, 120, 0.15) 0%, transparent 70%);
 }
 .gradient-orb-blue {
   background: radial-gradient(circle, rgba(30, 64, 120, 0.2) 0%, transparent 70%);
@@ -45,8 +45,8 @@
 /* Grid Background */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(89, 218, 221, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(89, 218, 221, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(45, 235, 120, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 235, 120, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -71,7 +71,7 @@
   background: linear-gradient(
     90deg,
     rgb(241, 245, 249) 0%,
-    rgb(89, 218, 221) 50%,
+    rgb(45, 235, 120) 50%,
     rgb(241, 245, 249) 100%
   );
   background-size: 200% 100%;
@@ -87,7 +87,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(89, 218, 221, 0.5) 50%,
+    rgba(45, 235, 120, 0.5) 50%,
     transparent 100%
   );
 }
@@ -96,7 +96,7 @@
 .radial-glow {
   background: radial-gradient(
     ellipse at center,
-    rgba(89, 218, 221, 0.08) 0%,
+    rgba(45, 235, 120, 0.08) 0%,
     transparent 70%
   );
 }
@@ -119,7 +119,7 @@
   position: absolute;
   inset: -4px;
   border-radius: inherit;
-  border: 1px solid rgba(89, 218, 221, 0.2);
+  border: 1px solid rgba(45, 235, 120, 0.2);
   animation: pulseGlow 4s ease-in-out infinite;
 }
 

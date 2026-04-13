@@ -22,10 +22,10 @@ const config: Config = {
           hover: "rgba(255, 255, 255, 0.06)",
         },
         teal: {
-          DEFAULT: "rgb(89, 218, 221)",
-          dim: "rgba(89, 218, 221, 0.15)",
-          ring: "rgba(89, 218, 221, 0.3)",
-          muted: "rgba(89, 218, 221, 0.6)",
+          DEFAULT: "rgb(45, 235, 120)",
+          dim: "rgba(45, 235, 120, 0.15)",
+          ring: "rgba(45, 235, 120, 0.3)",
+          muted: "rgba(45, 235, 120, 0.6)",
         },
         text: {
           primary: "rgb(241, 245, 249)",
@@ -38,16 +38,16 @@ const config: Config = {
         border: {
           DEFAULT: "rgba(255, 255, 255, 0.06)",
           subtle: "rgba(255, 255, 255, 0.04)",
-          accent: "rgba(89, 218, 221, 0.3)",
+          accent: "rgba(45, 235, 120, 0.3)",
         },
       },
       borderRadius: {
         pill: "9999px",
       },
       boxShadow: {
-        glow: "0 0 20px rgba(89, 218, 221, 0.15)",
-        "glow-lg": "0 0 40px rgba(89, 218, 221, 0.1)",
-        "glow-xl": "0 0 80px rgba(89, 218, 221, 0.08)",
+        glow: "0 0 20px rgba(45, 235, 120, 0.15)",
+        "glow-lg": "0 0 40px rgba(45, 235, 120, 0.1)",
+        "glow-xl": "0 0 80px rgba(45, 235, 120, 0.08)",
         card: "0 4px 24px rgba(0, 0, 0, 0.3)",
         "card-lg": "0 8px 40px rgba(0, 0, 0, 0.4)",
       },
