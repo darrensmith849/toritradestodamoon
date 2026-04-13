@@ -16,7 +16,6 @@ import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { cn } from '@/lib/utils'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
-import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { GradientOrb } from '@/components/ui/gradient-orb'
 import { GridBackground } from '@/components/ui/grid-background'
 import { TradingFlow } from '@/components/marketing/trading-flow'
@@ -485,12 +484,9 @@ export default function HomePage() {
                     {/* Price */}
                     <div className="mb-6 pb-6 border-b border-border">
                       <div className="flex items-baseline gap-1">
-                        <AnimatedCounter
-                          value={plan.price}
-                          prefix="$"
-                          duration={1200}
-                          className="text-4xl font-heading font-bold text-text-primary"
-                        />
+                        <span className="text-4xl font-heading font-bold text-text-primary tabular-nums">
+                          ${plan.price}
+                        </span>
                         <span className="text-sm text-text-muted font-body">/mo</span>
                       </div>
                     </div>
