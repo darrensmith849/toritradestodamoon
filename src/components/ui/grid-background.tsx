@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/lib/utils'
 
 interface GridBackgroundProps {
@@ -13,71 +15,37 @@ export function GridBackground({ className }: GridBackgroundProps) {
       )}
       aria-hidden="true"
     >
-      {/* Animated grid SVG */}
+      {/* Static dot grid — subtle, premium, no animation */}
       <div
-        className="absolute inset-0 animate-grid-move"
+        className="absolute inset-0"
         style={{
+          backgroundImage:
+            'radial-gradient(rgba(89, 218, 221, 0.08) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
           maskImage:
-            'radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)',
+            'radial-gradient(ellipse 50% 50% at 50% 40%, black 20%, transparent 75%)',
           WebkitMaskImage:
-            'radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)',
+            'radial-gradient(ellipse 50% 50% at 50% 40%, black 20%, transparent 75%)',
         }}
-      >
-        <svg
-          className="w-full"
-          style={{ height: '200%' }}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern
-              id="hero-grid-pattern"
-              width="60"
-              height="60"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 60 0 L 0 0 0 60"
-                fill="none"
-                stroke="rgba(89, 218, 221, 0.04)"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-grid-pattern)" />
-          {/* Horizontal accent lines at intervals */}
-          <line
-            x1="0"
-            y1="180"
-            x2="100%"
-            y2="180"
-            stroke="rgba(89, 218, 221, 0.06)"
-            strokeWidth="0.5"
-          />
-          <line
-            x1="0"
-            y1="360"
-            x2="100%"
-            y2="360"
-            stroke="rgba(89, 218, 221, 0.05)"
-            strokeWidth="0.5"
-          />
-          <line
-            x1="0"
-            y1="540"
-            x2="100%"
-            y2="540"
-            stroke="rgba(89, 218, 221, 0.04)"
-            strokeWidth="0.5"
-          />
-        </svg>
-      </div>
+      />
 
-      {/* Radial fade overlay for edges */}
+      {/* Subtle center glow — gives depth to the hero */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 70% at 50% 40%, transparent 40%, rgb(8, 19, 39) 100%)',
+            'radial-gradient(ellipse 40% 35% at 50% 40%, rgba(89, 218, 221, 0.04) 0%, transparent 100%)',
+        }}
+      />
+
+      {/* Single horizontal accent line */}
+      <div
+        className="absolute left-0 right-0"
+        style={{
+          top: '65%',
+          height: '1px',
+          background:
+            'linear-gradient(90deg, transparent 10%, rgba(89, 218, 221, 0.06) 50%, transparent 90%)',
         }}
       />
     </div>
