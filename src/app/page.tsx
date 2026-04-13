@@ -11,6 +11,13 @@ import {
   Check,
   Sparkles,
   ChevronRight,
+  Bot,
+  BarChart3,
+  Zap,
+  Eye,
+  TrendingUp,
+  Activity,
+  CircleDot,
 } from 'lucide-react'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
@@ -22,6 +29,7 @@ import { TradingFlow } from '@/components/marketing/trading-flow'
 import { LiveTicker } from '@/components/marketing/live-ticker'
 import { StatsRow } from '@/components/marketing/stats-row'
 import { ModeShowcase } from '@/components/marketing/mode-showcase'
+import { AnimatedCounter } from '@/components/ui/animated-counter'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -132,6 +140,152 @@ const trustIndicators = [
   { icon: Ban, label: 'No withdrawal access', sub: 'Read & trade only' },
 ]
 
+const featureStrip = [
+  { icon: Shield, label: 'Risk Controls' },
+  { icon: Bot, label: 'Auto-Execute' },
+  { icon: BarChart3, label: 'Analytics' },
+  { icon: Zap, label: 'Fast Execution' },
+  { icon: Lock, label: 'Your Keys' },
+  { icon: Eye, label: 'Observe Mode' },
+]
+
+/* ------------------------------------------------------------------ */
+/*  Mini Sparkline Chart (pure divs)                                   */
+/* ------------------------------------------------------------------ */
+
+function MiniSparkline() {
+  const bars = [35, 42, 38, 55, 48, 62, 58, 70, 65, 74, 68, 78, 72, 80, 76, 85, 82, 88]
+  return (
+    <div className="flex items-end gap-[2px] h-10">
+      {bars.map((h, i) => (
+        <div
+          key={i}
+          className="w-[3px] rounded-full bg-gradient-to-t from-teal/40 to-teal"
+          style={{
+            height: `${h}%`,
+            opacity: 0.4 + (i / bars.length) * 0.6,
+            animationDelay: `${i * 60}ms`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Mock Dashboard Preview                                             */
+/* ------------------------------------------------------------------ */
+
+function MockDashboardPreview() {
+  return (
+    <div className="relative max-w-lg mx-auto mt-12">
+      {/* Ambient glow behind the card */}
+      <div
+        className="absolute -inset-8 rounded-3xl pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(245,185,60,0.08) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
+      />
+
+      {/* The card */}
+      <div className="relative bg-bg-panel border border-border rounded-2xl p-5 sm:p-6 shadow-card-lg animate-float">
+        {/* Scan-line overlay */}
+        <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none z-10">
+          <div
+            className="absolute inset-0 opacity-[0.02]"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+            }}
+          />
+        </div>
+
+        {/* Header row */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-teal animate-pulse-soft" />
+            <span className="text-xs font-heading font-semibold text-text-secondary uppercase tracking-wider">
+              Portfolio
+            </span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal-dim/50 border border-teal/20">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-success" />
+            </span>
+            <span className="text-[10px] text-success font-body font-medium">Live</span>
+          </div>
+        </div>
+
+        {/* Equity + daily P&L */}
+        <div className="flex items-baseline gap-3 mb-1">
+          <span className="text-2xl sm:text-3xl font-heading font-bold text-text-primary tabular-nums">
+            $11,847.32
+          </span>
+          <span className="inline-flex items-center gap-0.5 text-sm font-body font-semibold text-success">
+            <TrendingUp className="w-3.5 h-3.5" />
+            +2.34%
+          </span>
+        </div>
+        <p className="text-[11px] text-text-muted font-body mb-4">Today&apos;s P&amp;L: +$271.42</p>
+
+        {/* Mini sparkline chart */}
+        <div className="mb-4 px-1">
+          <MiniSparkline />
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-border mb-4" />
+
+        {/* Active positions grid */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-bg-subtle rounded-lg px-3 py-2.5">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs font-heading font-semibold text-text-primary">BTC</span>
+              <span className="text-[10px] font-body font-medium text-teal px-1.5 py-0.5 rounded bg-teal-dim/50">
+                LONG
+              </span>
+            </div>
+            <span className="text-sm font-body font-semibold text-success tabular-nums">+1.02%</span>
+          </div>
+          <div className="bg-bg-subtle rounded-lg px-3 py-2.5">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs font-heading font-semibold text-text-primary">ETH</span>
+              <span className="text-[10px] font-body font-medium text-teal px-1.5 py-0.5 rounded bg-teal-dim/50">
+                LONG
+              </span>
+            </div>
+            <span className="text-sm font-body font-semibold text-success tabular-nums">+1.73%</span>
+          </div>
+          <div className="bg-bg-subtle rounded-lg px-3 py-2.5">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs font-heading font-semibold text-text-primary">SOL</span>
+              <span className="text-[10px] font-body font-medium text-teal px-1.5 py-0.5 rounded bg-teal-dim/50">
+                LONG
+              </span>
+            </div>
+            <span className="text-sm font-body font-semibold text-success tabular-nums">+1.69%</span>
+          </div>
+          <div className="bg-bg-subtle rounded-lg px-3 py-2.5 flex items-center justify-center gap-2">
+            <Activity className="w-3.5 h-3.5 text-teal" />
+            <span className="text-xs font-body font-medium text-teal">3 Active</span>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+          <span className="text-[10px] text-text-muted font-body">Risk utilization: 42%</span>
+          <div className="flex items-center gap-1">
+            <CircleDot className="w-3 h-3 text-success" />
+            <span className="text-[10px] text-success font-body font-medium">All systems nominal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------------------ */
 /*  Animated Risk Bar (fills on scroll)                                */
 /* ------------------------------------------------------------------ */
@@ -199,62 +353,152 @@ export default function HomePage() {
         {/* ============================================================
             SECTION 1 — HERO
         ============================================================ */}
-        <section className="relative py-32 sm:py-40 lg:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section className="relative py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
           {/* Background layers */}
           <GridBackground />
           <GradientOrb
             color="teal"
-            size={600}
-            className="absolute -top-40 -left-40 opacity-30 animate-float"
+            size={700}
+            className="absolute -top-48 -left-48 opacity-30 animate-float"
+            animate
+          />
+          <GradientOrb
+            color="teal"
+            size={500}
+            className="absolute -bottom-40 -right-40 opacity-20 animate-float-slow"
             animate
           />
           <GradientOrb
             color="blue"
-            size={500}
-            className="absolute -bottom-32 -right-32 opacity-20 animate-float-slow"
+            size={400}
+            className="absolute top-1/3 right-0 opacity-10 animate-float-slower"
             animate
           />
           <div className="noise-overlay pointer-events-none absolute inset-0" />
 
           {/* Content */}
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <div className="relative z-10 mx-auto max-w-5xl text-center">
             {/* Badge */}
-            <div className="animate-fade-in inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal/20 bg-teal-dim/30 mb-8">
+            <div className="animate-fade-in inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal/20 bg-teal-dim/30 mb-10">
               <Sparkles className="w-3.5 h-3.5 text-teal" />
               <span className="text-xs font-semibold text-teal uppercase tracking-wider font-body shimmer-text">
                 Built for serious traders
               </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="animate-slide-up text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-text-primary leading-[1.08] tracking-tight">
-              Your Trading
+            {/* Hero Stats Row — animated numbers */}
+            <div className="animate-slide-up flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16 mb-10">
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-text-primary">
+                  <AnimatedCounter value={12.4} prefix="$" suffix="M+" decimals={1} duration={2200} />
+                </div>
+                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                  Volume Processed
+                </p>
+              </div>
+              <div className="hidden sm:block w-px h-10 bg-border" />
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-text-primary">
+                  <AnimatedCounter value={99.9} suffix="%" decimals={1} duration={2000} />
+                </div>
+                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                  Uptime
+                </p>
+              </div>
+              <div className="hidden sm:block w-px h-10 bg-border" />
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-teal">
+                  <AnimatedCounter value={50} prefix="<" suffix="ms" duration={1800} />
+                </div>
+                <p className="text-xs sm:text-sm text-text-muted font-body mt-1 uppercase tracking-wider">
+                  Execution
+                </p>
+              </div>
+            </div>
+
+            {/* Headline — punchy 3-line treatment */}
+            <h1 className="animate-slide-up-delay-1 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold leading-[1.05] tracking-tight">
+              <span className="text-text-primary">Execute Smarter.</span>
               <br />
-              <span className="shimmer-text text-teal">Operating System</span>
+              <span className="shimmer-text text-teal">Trade Harder.</span>
+              <br />
+              <span className="text-text-primary">Risk Nothing.</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="animate-slide-up-delay-1 mt-6 text-lg sm:text-xl text-text-secondary font-body max-w-2xl mx-auto leading-relaxed">
-              Connect your exchange. Set your risk limits. Choose your mode.
-              TORI handles the rest&nbsp;&mdash; within the rules{' '}
-              <span className="text-text-primary font-medium">you</span> define.
+            <p className="animate-slide-up-delay-2 mt-7 text-lg sm:text-xl lg:text-2xl text-text-secondary font-body max-w-2xl mx-auto leading-relaxed">
+              The premium trading OS that enforces your rules, executes your strategy,
+              and never breaks your limits.
             </p>
 
             {/* CTAs */}
-            <div className="animate-slide-up-delay-2 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="animate-slide-up-delay-3 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/sign-up"
-                className="group inline-flex items-center justify-center h-12 px-8 text-base font-semibold font-body bg-teal text-bg-base rounded-pill hover:brightness-110 transition-all duration-200 shadow-glow hover:shadow-glow-lg"
+                className="group inline-flex items-center justify-center h-14 px-10 text-lg font-semibold font-body bg-teal text-bg-base rounded-pill hover:brightness-110 transition-all duration-200 shadow-glow hover:shadow-glow-lg"
               >
-                Start free
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                Start trading free
+                <ArrowRight className="ml-2.5 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center justify-center h-12 px-8 text-base font-body border border-teal/30 text-teal rounded-pill hover:bg-teal/10 transition-all duration-200"
+              <a
+                href="#mode-showcase"
+                className="inline-flex items-center justify-center h-14 px-10 text-lg font-body border border-teal/30 text-teal rounded-pill hover:bg-teal/10 transition-all duration-200"
               >
-                View pricing
-              </Link>
+                See it in action
+              </a>
+            </div>
+
+            {/* Feature Strip — 6 icon badges */}
+            <div className="mt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              {featureStrip.map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2 animate-fade-in"
+                    style={{ animationDelay: `${0.4 + i * 0.08}s`, animationFillMode: 'backwards' }}
+                  >
+                    <div className="w-7 h-7 rounded-full bg-teal/15 flex items-center justify-center">
+                      <Icon className="w-3.5 h-3.5 text-teal" />
+                    </div>
+                    <span className="text-xs sm:text-sm font-body font-medium text-text-secondary">
+                      {item.label}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Mock Dashboard Preview */}
+            <div
+              className="animate-slide-up"
+              style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}
+            >
+              <MockDashboardPreview />
+            </div>
+
+            {/* Powered-by strip */}
+            <div
+              className="mt-10 flex flex-wrap items-center justify-center gap-6 sm:gap-8 animate-fade-in"
+              style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}
+            >
+              <span className="text-[11px] text-text-muted font-body uppercase tracking-wider">
+                Powered by
+              </span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-4 h-4 rounded bg-teal/15 flex items-center justify-center">
+                  <span className="text-[8px] font-heading font-bold text-teal">B</span>
+                </div>
+                <span className="text-xs text-text-muted font-body">Binance</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5 text-text-muted" />
+                <span className="text-xs text-text-muted font-body">Real-time Data</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-text-muted" />
+                <span className="text-xs text-text-muted font-body">Military-grade Security</span>
+              </div>
             </div>
           </div>
 
@@ -281,7 +525,7 @@ export default function HomePage() {
         {/* ============================================================
             SECTION 4 — MODE SHOWCASE (How It Works)
         ============================================================ */}
-        <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+        <section id="mode-showcase" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <ScrollReveal>
               <div className="text-center mb-16">
