@@ -1,5 +1,16 @@
 import type { User } from '@/lib/types'
 
+export const freeUser: User = {
+  id: 'user-free',
+  email: 'free@toritrades.com',
+  name: 'Free User',
+  tier: 'free',
+  automationMode: 'observe',
+  exchangeConnected: false,
+  accountType: 'paper',
+  automationActive: false,
+}
+
 export const tier1User: User = {
   id: 'usr_starter_001',
   email: 'starter@toritrades.com',

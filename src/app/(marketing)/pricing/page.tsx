@@ -14,44 +14,53 @@ export default function PricingPage() {
   const multiplier = billing === 'annual' ? 0.8 : 1
 
   const planFeatures: Record<PlanTier, string[]> = {
+    free: [
+      'Observe + Simulate only',
+      '1 paper account',
+      '1x leverage (simulated)',
+      '1 simulated position',
+      '10% max allocation',
+      '1 entry per 24h',
+      '2 enabled assets',
+    ],
     tier1: [
       '1 live account',
-      '7.5% max allocation per trade',
-      '3x max leverage',
+      '1x leverage',
       '2 concurrent positions',
+      '7.5% max allocation',
       '20% total exposure',
-      '3 entries per 24h',
+      '2 entries per 24h',
       '6 enabled assets',
     ],
     tier2: [
       '1 live + 1 paper account',
-      '12.5% max allocation',
       '5x max leverage',
       '5 concurrent positions',
+      '12.5% max allocation',
       '45% total exposure',
-      '8 entries per 24h',
+      '5 entries per 24h',
       '12 enabled assets',
     ],
     tier3: [
       'Up to 3 live accounts',
-      '20% max allocation',
       '10x max leverage',
       '10 concurrent positions',
+      '20% max allocation',
       '75% total exposure',
-      '20 entries per 24h',
-      'Full asset universe',
+      '8 entries per 24h',
+      'Full supported asset universe',
     ],
   }
 
   const comparisonRows = [
-    { label: 'Live Accounts', tier1: '1', tier2: '1', tier3: 'Up to 3' },
-    { label: 'Paper Accounts', tier1: '0', tier2: '1', tier3: '0' },
-    { label: 'Max Allocation', tier1: '7.5%', tier2: '12.5%', tier3: '20%' },
-    { label: 'Max Leverage', tier1: '3x', tier2: '5x', tier3: '10x' },
-    { label: 'Concurrent Positions', tier1: '2', tier2: '5', tier3: '10' },
-    { label: 'Total Exposure', tier1: '20%', tier2: '45%', tier3: '75%' },
-    { label: 'Entries per 24h', tier1: '3', tier2: '8', tier3: '20' },
-    { label: 'Enabled Assets', tier1: '6', tier2: '12', tier3: 'Unlimited' },
+    { label: 'Live Accounts', free: '0', tier1: '1', tier2: '1', tier3: 'Up to 3' },
+    { label: 'Paper Accounts', free: '1', tier1: '0', tier2: '1', tier3: '0' },
+    { label: 'Max Allocation', free: '10%', tier1: '7.5%', tier2: '12.5%', tier3: '20%' },
+    { label: 'Max Leverage', free: '1x', tier1: '1x', tier2: '5x', tier3: '10x' },
+    { label: 'Concurrent Positions', free: '1', tier1: '2', tier2: '5', tier3: '10' },
+    { label: 'Total Exposure', free: '10%', tier1: '20%', tier2: '45%', tier3: '75%' },
+    { label: 'Entries per 24h', free: '1', tier1: '2', tier2: '5', tier3: '8' },
+    { label: 'Enabled Assets', free: '2', tier1: '6', tier2: '12', tier3: 'Unlimited' },
   ]
 
   return (
@@ -89,7 +98,7 @@ export default function PricingPage() {
         </div>
 
         {/* Pricing cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {TIER_ORDER.map((tierKey) => {
             const plan = PLAN_TIERS[tierKey]
             const features = planFeatures[tierKey]
@@ -119,12 +128,18 @@ export default function PricingPage() {
                     {plan.name}
                   </h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-heading font-bold text-text-primary">
-                      ${price}
-                    </span>
-                    <span className="text-sm text-text-muted font-body">/mo</span>
+                    {price === 0 ? (
+                      <span className="text-4xl font-heading font-bold text-text-primary">Free</span>
+                    ) : (
+                      <>
+                        <span className="text-4xl font-heading font-bold text-text-primary">
+                          ${price}
+                        </span>
+                        <span className="text-sm text-text-muted font-body">/mo</span>
+                      </>
+                    )}
                   </div>
-                  {billing === 'annual' && (
+                  {billing === 'annual' && price > 0 && (
                     <p className="text-xs text-text-muted font-body mt-1">
                       Billed annually (${price * 12}/yr)
                     </p>
@@ -188,15 +203,14 @@ export default function PricingPage() {
                     <td className="text-sm text-text-secondary font-body py-3 pr-4">
                       {row.label}
                     </td>
-                    <td className="text-sm text-text-primary font-body text-center py-3 px-4">
-                      {row.tier1}
-                    </td>
-                    <td className="text-sm text-text-primary font-body text-center py-3 px-4">
-                      {row.tier2}
-                    </td>
-                    <td className="text-sm text-text-primary font-body text-center py-3 px-4">
-                      {row.tier3}
-                    </td>
+                    {TIER_ORDER.map((tierKey) => (
+                      <td
+                        key={tierKey}
+                        className="text-sm text-text-primary font-body text-center py-3 px-4"
+                      >
+                        {row[tierKey]}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>

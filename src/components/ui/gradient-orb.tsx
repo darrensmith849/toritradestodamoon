@@ -8,7 +8,7 @@ interface GradientOrbProps {
 }
 
 const colorMap: Record<string, string> = {
-  teal: 'rgba(45, 235, 120, 0.12)',
+  teal: 'rgba(245, 185, 60, 0.10)',
   blue: 'rgba(30, 64, 175, 0.15)',
   purple: 'rgba(124, 58, 237, 0.1)',
 }

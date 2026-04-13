@@ -20,7 +20,7 @@ export function GridBackground({ className }: GridBackgroundProps) {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(rgba(45, 235, 120, 0.08) 1px, transparent 1px)',
+            'radial-gradient(rgba(245, 185, 60, 0.08) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
           maskImage:
             'radial-gradient(ellipse 50% 50% at 50% 40%, black 20%, transparent 75%)',
@@ -34,7 +34,7 @@ export function GridBackground({ className }: GridBackgroundProps) {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 40% 35% at 50% 40%, rgba(45, 235, 120, 0.04) 0%, transparent 100%)',
+            'radial-gradient(ellipse 40% 35% at 50% 40%, rgba(245, 185, 60, 0.04) 0%, transparent 100%)',
         }}
       />
 
@@ -45,7 +45,7 @@ export function GridBackground({ className }: GridBackgroundProps) {
           top: '65%',
           height: '1px',
           background:
-            'linear-gradient(90deg, transparent 10%, rgba(45, 235, 120, 0.06) 50%, transparent 90%)',
+            'linear-gradient(90deg, transparent 10%, rgba(245, 185, 60, 0.06) 50%, transparent 90%)',
         }}
       />
     </div>

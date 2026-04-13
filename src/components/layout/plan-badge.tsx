@@ -8,9 +8,10 @@ interface PlanBadgeProps {
 }
 
 const tierStyles: Record<PlanTier, string> = {
+  free: 'bg-bg-hover text-text-muted',
   tier1: 'bg-bg-hover text-text-secondary',
   tier2: 'bg-teal-dim text-teal',
-  tier3: 'bg-warning/10 text-warning',
+  tier3: 'bg-teal-dim text-teal',
 }
 
 export function PlanBadge({ tier, className }: PlanBadgeProps) {

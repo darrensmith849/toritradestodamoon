@@ -93,12 +93,12 @@ export default function DashboardPage() {
                   <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop
                       offset="5%"
-                      stopColor="rgb(45, 235, 120)"
+                      stopColor="rgb(245, 185, 60)"
                       stopOpacity={0.15}
                     />
                     <stop
                       offset="95%"
-                      stopColor="rgb(45, 235, 120)"
+                      stopColor="rgb(245, 185, 60)"
                       stopOpacity={0}
                     />
                   </linearGradient>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                 <Area
                   type="monotone"
                   dataKey="equity"
-                  stroke="rgb(45, 235, 120)"
+                  stroke="rgb(245, 185, 60)"
                   strokeWidth={2}
                   fill="url(#tealGradient)"
                 />

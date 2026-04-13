@@ -1,5 +1,14 @@
 import type { RiskUsage } from '@/lib/types'
 
+export const freeRiskUsage: RiskUsage = {
+  allocation: { used: 5, limit: 10 },
+  leverage: { used: 1, limit: 1 },
+  concurrent: { used: 0, limit: 1 },
+  exposure: { used: 5, limit: 10 },
+  entries24h: { used: 0, limit: 1 },
+  assets: { used: 1, limit: 2 },
+}
+
 export const tier1RiskUsage: RiskUsage = {
   allocation: { used: 7.0, limit: 7.5 },
   leverage: { used: 3, limit: 3 },

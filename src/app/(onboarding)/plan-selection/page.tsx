@@ -20,7 +20,7 @@ export default function PlanSelectionPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
         {TIER_ORDER.map((tier) => {
           const plan = PLAN_TIERS[tier]
           const isSelected = selected === tier
@@ -41,14 +41,22 @@ export default function PlanSelectionPage() {
                 {plan.name}
               </h3>
               <p className="text-2xl font-bold font-heading text-teal mb-4">
-                ${plan.price}
-                <span className="text-sm font-normal text-text-muted">/mo</span>
+                {plan.price === 0 ? (
+                  'Free'
+                ) : (
+                  <>
+                    ${plan.price}
+                    <span className="text-sm font-normal text-text-muted">/mo</span>
+                  </>
+                )}
               </p>
 
               <ul className="space-y-2 text-sm font-body text-text-secondary">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0" />
-                  {plan.liveAccounts} live account{plan.liveAccounts > 1 ? 's' : ''}
+                  {plan.liveAccounts > 0
+                    ? `${plan.liveAccounts} live account${plan.liveAccounts > 1 ? 's' : ''}`
+                    : `${plan.paperAccounts} paper account`}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0" />
@@ -56,7 +64,7 @@ export default function PlanSelectionPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0" />
-                  {plan.maxConcurrentPositions} concurrent positions
+                  {plan.maxConcurrentPositions} {plan.liveAccounts > 0 ? 'concurrent' : 'simulated'} position{plan.maxConcurrentPositions > 1 ? 's' : ''}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0" />

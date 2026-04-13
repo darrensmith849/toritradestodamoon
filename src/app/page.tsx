@@ -64,16 +64,31 @@ const riskBars = [
 
 const plans = [
   {
+    name: 'Free',
+    price: 0,
+    description: 'Observe and simulate. No live trading.',
+    features: [
+      'Observe + Simulate only',
+      '1 paper account',
+      '1x leverage',
+      '1 simulated position',
+      '10% max allocation',
+      '1 entry per 24h',
+      '2 enabled assets',
+    ],
+    highlighted: false,
+  },
+  {
     name: 'Starter',
     price: 49,
-    description: 'For traders getting started with systematic execution.',
+    description: 'Your first live trading account with strict limits.',
     features: [
       '1 live account',
-      '7.5% max allocation per trade',
-      '3x max leverage',
+      '1x leverage',
       '2 concurrent positions',
+      '7.5% max allocation',
       '20% total exposure',
-      '3 entries per 24h',
+      '2 entries per 24h',
       '6 enabled assets',
     ],
     highlighted: false,
@@ -84,11 +99,11 @@ const plans = [
     description: 'Full power for active traders who demand precision.',
     features: [
       '1 live + 1 paper account',
-      '12.5% max allocation per trade',
       '5x max leverage',
       '5 concurrent positions',
+      '12.5% max allocation',
       '45% total exposure',
-      '8 entries per 24h',
+      '5 entries per 24h',
       '12 enabled assets',
     ],
     highlighted: true,
@@ -99,11 +114,11 @@ const plans = [
     description: 'Institutional-grade tools for serious portfolio managers.',
     features: [
       'Up to 3 live accounts',
-      '20% max allocation per trade',
       '10x max leverage',
       '10 concurrent positions',
+      '20% max allocation',
       '75% total exposure',
-      '20 entries per 24h',
+      '8 entries per 24h',
       'Full supported asset universe',
     ],
     highlighted: false,
@@ -450,7 +465,7 @@ export default function HomePage() {
               </div>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {plans.map((plan, i) => (
                 <ScrollReveal key={plan.name} delay={i * 120}>
                   <div
@@ -484,10 +499,16 @@ export default function HomePage() {
                     {/* Price */}
                     <div className="mb-6 pb-6 border-b border-border">
                       <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-heading font-bold text-text-primary tabular-nums">
-                          ${plan.price}
-                        </span>
-                        <span className="text-sm text-text-muted font-body">/mo</span>
+                        {plan.price === 0 ? (
+                          <span className="text-4xl font-heading font-bold text-text-primary">Free</span>
+                        ) : (
+                          <>
+                            <span className="text-4xl font-heading font-bold text-text-primary tabular-nums">
+                              ${plan.price}
+                            </span>
+                            <span className="text-sm text-text-muted font-body">/mo</span>
+                          </>
+                        )}
                       </div>
                     </div>
 

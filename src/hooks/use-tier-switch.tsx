@@ -5,7 +5,7 @@ import type { PlanTier } from '@/lib/types'
 import { PLAN_TIERS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
-const tiers: PlanTier[] = ['tier1', 'tier2', 'tier3']
+const tiers: PlanTier[] = ['free', 'tier1', 'tier2', 'tier3']
 
 export function TierSwitchPanel() {
   const { tier, setTier } = usePlanContext()

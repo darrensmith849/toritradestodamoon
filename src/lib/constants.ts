@@ -1,16 +1,29 @@
 import { PlanLimits, PlanTier } from './types'
 
 export const PLAN_TIERS: Record<PlanTier, PlanLimits> = {
+  free: {
+    name: 'Free',
+    price: 0,
+    liveAccounts: 0,
+    paperAccounts: 1,
+    maxAllocation: 10,
+    maxLeverage: 1,
+    maxConcurrentPositions: 1,
+    maxExposure: 10,
+    maxEntriesPer24h: 1,
+    assetCount: 2,
+    assetLabel: '2 assets',
+  },
   tier1: {
     name: 'Starter',
     price: 49,
     liveAccounts: 1,
     paperAccounts: 0,
     maxAllocation: 7.5,
-    maxLeverage: 3,
+    maxLeverage: 1,
     maxConcurrentPositions: 2,
     maxExposure: 20,
-    maxEntriesPer24h: 3,
+    maxEntriesPer24h: 2,
     assetCount: 6,
     assetLabel: '6 assets',
   },
@@ -23,7 +36,7 @@ export const PLAN_TIERS: Record<PlanTier, PlanLimits> = {
     maxLeverage: 5,
     maxConcurrentPositions: 5,
     maxExposure: 45,
-    maxEntriesPer24h: 8,
+    maxEntriesPer24h: 5,
     assetCount: 12,
     assetLabel: '12 assets',
   },
@@ -36,13 +49,13 @@ export const PLAN_TIERS: Record<PlanTier, PlanLimits> = {
     maxLeverage: 10,
     maxConcurrentPositions: 10,
     maxExposure: 75,
-    maxEntriesPer24h: 20,
+    maxEntriesPer24h: 8,
     assetCount: 'unlimited',
     assetLabel: 'Full universe',
   },
 }
 
-export const TIER_ORDER: PlanTier[] = ['tier1', 'tier2', 'tier3']
+export const TIER_ORDER: PlanTier[] = ['free', 'tier1', 'tier2', 'tier3']
 
 export const MARKETING_NAV = [
   { label: 'Features', href: '/features' },

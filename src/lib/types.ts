@@ -1,4 +1,4 @@
-export type PlanTier = 'tier1' | 'tier2' | 'tier3'
+export type PlanTier = 'free' | 'tier1' | 'tier2' | 'tier3'
 
 export interface PlanLimits {
   name: string
