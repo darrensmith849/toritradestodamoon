@@ -227,9 +227,10 @@ export function AnimatedPriceChart({
               <polyline
                 points={maLine}
                 fill="none"
-                stroke="rgba(245,185,60,0.25)"
+                stroke="rgba(245,185,60,0.22)"
                 strokeWidth={1}
-                strokeDasharray="4 3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 style={{ transition: 'all 0.8s ease-out' }}
               />
               {/* Support line */}
@@ -238,9 +239,9 @@ export function AnimatedPriceChart({
                 y1={supportY}
                 x2={svgWidth}
                 y2={supportY - 4}
-                stroke="rgba(52,211,153,0.18)"
+                stroke="rgba(52,211,153,0.16)"
                 strokeWidth={1}
-                strokeDasharray="6 4"
+                strokeLinecap="round"
               />
               {/* Resistance line */}
               <line
@@ -248,9 +249,9 @@ export function AnimatedPriceChart({
                 y1={resistY}
                 x2={svgWidth}
                 y2={resistY + 3}
-                stroke="rgba(248,113,113,0.15)"
+                stroke="rgba(248,113,113,0.14)"
                 strokeWidth={1}
-                strokeDasharray="6 4"
+                strokeLinecap="round"
               />
               {/* Tiny labels */}
               <text
